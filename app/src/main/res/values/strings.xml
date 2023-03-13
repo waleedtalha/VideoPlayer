@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Video Player</string>
+    <string name="text1">Thank you for installing our Video Player App</string>
+    <string name="text2">For playing videos in this app, you have to allow for accessing
+all the videos in this device.Allow access and we are ready to go.</string>
+</resources>

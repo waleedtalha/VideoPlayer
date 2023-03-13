@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/next"
+        android:title="Play Next"
+        app:showAsAction="never"/>
+    <item android:id="@+id/send"
+        android:title="Send"
+        app:showAsAction="never"/>
+    <item android:id="@+id/properties"
+        android:title="Properties"
+        app:showAsAction="never"/>
+    <item android:id="@+id/delete"
+        android:title="Delete"
+        app:showAsAction="never"/>
+    <item android:id="@+id/subtitle"
+        android:title="Subtitle"
+        app:showAsAction="never"/>
+</menu>

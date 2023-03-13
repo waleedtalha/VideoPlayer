@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.VideoPlayerActivity">
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/exoplayer_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        app:controller_layout_id="@layout/custom_playback_view"
+        app:fastforward_increment="10000"
+        app:show_buffering="when_playing"
+        app:buffered_color="@color/teal_200"
+        app:hide_on_touch="false"
+        app:player_layout_id="@layout/exo_layout_view"
+        app:resize_mode="fit"
+        app:rewind_increment="10000"
+        app:show_timeout="4000"
+        app:shutter_background_color="#000000"
+        app:surface_type="surface_view"
+        app:use_controller="true" />
+
+    <View
+        android:id="@+id/night_mode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_dark"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/eqFrame"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+</RelativeLayout>
