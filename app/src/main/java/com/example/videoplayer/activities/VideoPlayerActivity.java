@@ -116,7 +116,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
     //horizontal recyclerview variables
 
     //swipe and zoom variables
-    private int device_height, device_width, brightness,media_volume;
+    private int device_height, device_width, brightness, media_volume;
     boolean start = false;
     boolean left, right;
     private float baseX, baseY;
@@ -124,7 +124,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
     private long diffX, diffY;
     public static final int MINIMUM_DISTANCE = 100;
     boolean success = false;
-    TextView vol_text, brt_text,total_duration;
+    TextView vol_text, brt_text, total_duration;
     ProgressBar vol_progress, brt_progress;
     LinearLayout vol_progress_container, vol_text_container, brt_progress_container, brt_text_container;
     ImageView vol_icon, brt_icon;
@@ -199,7 +199,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
                                                 android.provider.Settings.System.putInt(contentResolver, android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE,
                                                         android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
                                                 brightness = android.provider.Settings.System.getInt(contentResolver, android.provider.Settings.System.SCREEN_BRIGHTNESS);
-                                            } catch (android.provider.Settings.SettingNotFoundException e) {
+                                            } catch (
+                                                    android.provider.Settings.SettingNotFoundException e) {
                                                 e.printStackTrace();
                                             }
                                             int new_brightness = (int) (brightness - (diffY * brightnessSpeed));
@@ -221,7 +222,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
                                                 brt_icon.setImageResource(R.drawable.ic_brightness);
                                             }
 
-                                            brt_text.setText(" " +(int) brt_percentage + "%");
+                                            brt_text.setText(" " + (int) brt_percentage + "%");
                                             android.provider.Settings.System.putInt(contentResolver, android.provider.Settings.System.SCREEN_BRIGHTNESS,
                                                     (new_brightness));
                                             WindowManager.LayoutParams layoutParams = window.getAttributes();
@@ -241,7 +242,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
                                             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                                                     newMediaVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
                                             double volPer = Math.ceil((((double) newMediaVolume / (double) maxVol) * (double) 100));
-                                            vol_text.setText(" " + (int) volPer+"%");
+                                            vol_text.setText(" " + (int) volPer + "%");
                                             if (volPer < 1) {
                                                 vol_icon.setImageResource(R.drawable.ic_volume_off);
                                                 vol_text.setVisibility(View.VISIBLE);
@@ -707,6 +708,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
             decodeView.setSystemUiVisibility(uiOptions);
         }
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -934,7 +936,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private class ScaleDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener{
+    private class ScaleDetector extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
             scale_factor *= detector.getScaleFactor();
