@@ -51,4 +51,4 @@ Video Player app features:
 
 This is the app to meet all the requirements of the media player and along with attractive UI will bring you the best experience.
 
-https://play.google.com/store/apps/details?id=com.cwise.wplayer
+[WPlayer](https://play.google.com/store/apps/details?id=com.cwise.wplayer)
