@@ -50,3 +50,5 @@ Video Player app features:
 ● Sort Video files by name, date, length and size in Ascending or Descending order
 
 This is the app to meet all the requirements of the media player and along with attractive UI will bring you the best experience.
+
+https://play.google.com/store/apps/details?id=com.cwise.wplayer
