@@ -1,5 +1,6 @@
 package com.example.videoplayer.activities;
 
+import android.annotation.SuppressLint;
 import android.app.PictureInPictureParams;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -153,7 +154,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         position = getIntent().getIntExtra("position", 1);
         videoTitle = getIntent().getStringExtra("video_title");
         mVideoFiles = getIntent().getExtras().getParcelableArrayList("videoArrayList");
-//        screenOrientation();
 
         initViews();
         playVideo();
@@ -709,6 +709,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

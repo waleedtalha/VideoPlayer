@@ -30,19 +30,12 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     VideoFoldersAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-//                PackageManager.PERMISSION_DENIED) {
-//            Toast.makeText(this, "Click on permissions and allow storage", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-//            Uri uri = Uri.fromParts("package", getPackageName(), null);
-//            intent.setData(uri);
-//            startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
-//        }
         recyclerView = findViewById(R.id.folders_rv);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_folders);
         showFolders();
@@ -60,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new VideoFoldersAdapter(mediaFiles, allFolderList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,
-                RecyclerView.VERTICAL,false));
+                RecyclerView.VERTICAL, false));
         adapter.notifyDataSetChanged();
     }
-    public ArrayList<MediaFiles> fetchMedia(){
+
+    public ArrayList<MediaFiles> fetchMedia() {
         ArrayList<MediaFiles> mediaFilesArrayList = new ArrayList<>();
         Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
 
@@ -71,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 null, null, null);
         if (cursor != null && cursor.moveToNext()) {
             do {
-                String id = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media._ID));
-                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.TITLE));
-                String displayName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
-                String size = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.SIZE));
-                String duration = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DURATION));
-                String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-                String dateAdded = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATE_ADDED));
+                @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media._ID));
+                @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.TITLE));
+                @SuppressLint("Range") String displayName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
+                @SuppressLint("Range") String size = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.SIZE));
+                @SuppressLint("Range") String duration = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DURATION));
+                @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
+                @SuppressLint("Range") String dateAdded = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATE_ADDED));
                 MediaFiles mediaFiles = new MediaFiles(id, title, displayName, size, duration, path,
                         dateAdded);
 
@@ -94,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.folder_menu,menu);
+        getMenuInflater().inflate(R.menu.folder_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -116,11 +110,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.share_app:
                 Intent share_intent = new Intent();
                 share_intent.setAction(Intent.ACTION_SEND);
-                share_intent.putExtra(Intent.EXTRA_TEXT,"Check this app via\n"+
+                share_intent.putExtra(Intent.EXTRA_TEXT, "Check this app via\n" +
                         "https://play.google.com/store/apps/details?id="
-                                + getApplicationContext().getPackageName());
+                        + getApplicationContext().getPackageName());
                 share_intent.setType("text/plain");
-                startActivity(Intent.createChooser(share_intent,"Share app via"));
+                startActivity(Intent.createChooser(share_intent, "Share app via"));
                 break;
         }
         return true;

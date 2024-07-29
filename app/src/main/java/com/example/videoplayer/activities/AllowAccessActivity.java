@@ -38,16 +38,15 @@ public class AllowAccessActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("AllowAccess", MODE_PRIVATE);
 
-        String value = preferences.getString("Allow","");
+        String value = preferences.getString("Allow", "");
         if (value.equals("OK")) {
             startActivity(new Intent(AllowAccessActivity.this, MainActivity.class));
             finish();
         } else {
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("Allow","OK");
+            editor.putString("Allow", "OK");
             editor.apply();
         }
-
 
 
         allow_btn.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +76,7 @@ public class AllowAccessActivity extends AppCompatActivity {
                             e.printStackTrace();
                             Intent intent = new Intent();
                             intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                            startActivityForResult(intent,STORAGE_PERMISSION_ABOVE10);
+                            startActivityForResult(intent, STORAGE_PERMISSION_ABOVE10);
                         }
                     }
                 }
@@ -111,7 +110,7 @@ public class AllowAccessActivity extends AppCompatActivity {
                                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                                         Uri uri = Uri.fromParts("package", getPackageName(), null);
                                         intent.setData(uri);
-                                        startActivityForResult(intent,REQUEST_PERMISSION_SETTING);
+                                        startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
                                     }
                                 }).create().show();
                     } else {

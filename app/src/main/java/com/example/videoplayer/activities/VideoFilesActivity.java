@@ -32,6 +32,7 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
     String folder_name;
     SwipeRefreshLayout swipeRefreshLayout;
     String sortOrder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
 
     private void showVideoFiles() {
         videoFilesArrayList = fetchMedia(folder_name);
-        videoFilesAdapter = new VideoFilesAdapter(videoFilesArrayList, this,0);
+        videoFilesAdapter = new VideoFilesAdapter(videoFilesArrayList, this, 0);
         recyclerView.setAdapter(videoFilesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,
                 RecyclerView.VERTICAL, false));
@@ -66,22 +67,22 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
 
     private ArrayList<MediaFiles> fetchMedia(String folderName) {
         SharedPreferences preferences = getSharedPreferences(MY_PREF, MODE_PRIVATE);
-        String sort_value = preferences.getString("sort","abcd");
+        String sort_value = preferences.getString("sort", "abcd");
 
         ArrayList<MediaFiles> videoFiles = new ArrayList<>();
         Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
         if (sort_value.equals("sortName")) {
-            sortOrder = MediaStore.MediaColumns.DISPLAY_NAME+" ASC";
+            sortOrder = MediaStore.MediaColumns.DISPLAY_NAME + " ASC";
         } else if (sort_value.equals("sortSize")) {
-            sortOrder = MediaStore.MediaColumns.SIZE+" DESC";
+            sortOrder = MediaStore.MediaColumns.SIZE + " DESC";
         } else if (sort_value.equals("sortDate")) {
             sortOrder = MediaStore.MediaColumns.DATE_ADDED + " DESC";
         } else {
-            sortOrder = MediaStore.Video.Media.DURATION+" DESC";
+            sortOrder = MediaStore.Video.Media.DURATION + " DESC";
         }
 
-        String selection = MediaStore.Video.Media.DATA+" like?";
-        String[] selectionArg = new String[]{"%"+folderName+"%"};
+        String selection = MediaStore.Video.Media.DATA + " like?";
+        String[] selectionArg = new String[]{"%" + folderName + "%"};
         Cursor cursor = getContentResolver().query(uri, null,
                 selection, selectionArg, sortOrder);
         if (cursor != null && cursor.moveToNext()) {
@@ -96,7 +97,7 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
                 MediaFiles mediaFiles = new MediaFiles(id, title, displayName, size, duration, path,
                         dateAdded);
                 videoFiles.add(mediaFiles);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return videoFiles;
     }
@@ -113,7 +114,7 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        SharedPreferences preferences = getSharedPreferences(MY_PREF,MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(MY_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
         int id = item.getItemId();
@@ -134,23 +135,23 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
                         dialog.dismiss();
                     }
                 });
-                String[] items = {"Name (A to Z)","Size (Big to Small)","Date (New to Old)",
-                "Length (Long to Short)"};
+                String[] items = {"Name (A to Z)", "Size (Big to Small)", "Date (New to Old)",
+                        "Length (Long to Short)"};
                 alertDialog.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                editor.putString("sort","sortName");
+                                editor.putString("sort", "sortName");
                                 break;
                             case 1:
-                                editor.putString("sort","sortSize");
+                                editor.putString("sort", "sortSize");
                                 break;
                             case 2:
-                                editor.putString("sort","sortDate");
+                                editor.putString("sort", "sortDate");
                                 break;
                             case 3:
-                                editor.putString("sort","sortLength");
+                                editor.putString("sort", "sortLength");
                                 break;
                         }
                     }
