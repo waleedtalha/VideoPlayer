@@ -110,6 +110,7 @@ public class VideoFilesActivity extends AppCompatActivity implements SearchView.
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         SharedPreferences preferences = getSharedPreferences(MY_PREF,MODE_PRIVATE);

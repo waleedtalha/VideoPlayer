@@ -6,6 +6,7 @@ android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
+    namespace 'com.example.videoplayer'
     defaultConfig {
         applicationId "com.example.videoplayer"
         minSdkVersion 21
